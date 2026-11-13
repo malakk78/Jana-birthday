@@ -117,7 +117,67 @@
     transform: translateY(0) scale(1);
     pointer-events: auto;
       }
-        
+          .intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(14, 17, 22, 0.96);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    transition: opacity 1s ease, visibility 1s ease;
+  }
+
+  .intro-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .headphones-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    animation: pulseIcon 2.5s infinite ease-in-out;
+  }
+
+  .intro-text {
+    color: #e2e8f0;
+    font-size: 1.15rem;
+    max-width: 380px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+  }
+
+  .start-btn {
+    padding: 12px 32px;
+    font-size: 1rem;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+  }
+
+  .start-btn:hover {
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: translateY(-2px);
+  }
+
+  @keyframes pulseIcon {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
+      }
+      
     </style>
     
 <head>
@@ -728,6 +788,26 @@
     const hint = document.getElementById('bottleHint');
     scrollBox.classList.add('revealed');
     hint.textContent = "رسالة من أعماق البحر ✨";
+  }
+</script>
+    <!-- شاشة الترحيب -->
+<div class="intro-overlay" id="introOverlay">
+  <div class="headphones-icon">🎧</div>
+  <p class="intro-text">
+    لتجربة أهدأ وأعمق، يُفضّل ارتداء السماعات وتشغيل الصوت قبل الدخول..
+  </p>
+  <button class="start-btn" onclick="enterExperience()">ابدئي التجربة ✨</button>
+</div>
+
+<script>
+  function enterExperience() {
+    // تشغيل دالة الأمواج الموجودة أصلاً في موقعك
+    if (typeof toggleWaves === "function") {
+      toggleWaves();
+    }
+    
+    // إخفاء شاشة البداية بنعومة
+    document.getElementById('introOverlay').classList.add('hidden');
   }
 </script>
     
