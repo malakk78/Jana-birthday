@@ -1,5 +1,62 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+    <style>
+  /* حاوية النجوم بالخلفية */
+  .stars-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 999;
+  }
+  /* شكل ونمط النجمة المتلألئة */
+  .star {
+    position: absolute;
+    background: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 0 0 15px rgba(255, 215, 0, 0.5);
+    animation: twinkle var(--duration) infinite ease-in-out;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.2; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+          /* حاوية موج البحر المتحرك */
+  .ocean {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    pointer-events: none;
+    z-index: 998;
+    overflow: hidden;
+    opacity: 0.4;
+  }
+  .wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 C150,90 350,-40 500,40 C650,120 900,20 1200,60 L1200,120 L0,120 Z" fill="%23ffffff"/></svg>');
+    background-repeat: repeat-x;
+    animation: wave-animation 10s linear infinite;
+  }
+  .wave:nth-of-type(2) {
+    bottom: 5px;
+    opacity: 0.5;
+    animation: wave-animation 7s linear infinite reverse;
+  }
+  @keyframes wave-animation {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+    
+    </style>
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
