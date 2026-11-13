@@ -54,7 +54,70 @@
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
   }
+      /* قسم الختام والزجاجة */
+  .bottle-finale {
+    position: relative;
+    margin-top: 80px;
+    padding: 60px 20px 100px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .bottle-trigger {
+    display: inline-block;
+    cursor: pointer;
+    font-size: 3.5rem;
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
+    animation: floatBottle 3s ease-in-out infinite;
+    transition: transform 0.3s ease;
+    user-select: none;
+  }
+
+  .bottle-trigger:hover {
+    transform: scale(1.15) rotate(8deg);
+  }
+
+  .bottle-hint {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.65);
+    letter-spacing: 0.5px;
+  }
+
+  @keyframes floatBottle {
+    0%, 100% { transform: translateY(0px) rotate(-4deg); }
+    50% { transform: translateY(-12px) rotate(4deg); }
+  }
+
+  /* بطاقة الرسالة المخفية */
+  .scroll-message-box {
+    max-width: 500px;
+    margin: 25px auto 0;
+    padding: 25px 22px;
+    background: rgba(25, 30, 38, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    color: #f0f0f0;
+    line-height: 1.9;
+    font-size: 1.05rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     
+    /* إخفاء الرسالة بالبداية مع حركة ظهور ناعمة */
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    pointer-events: none;
+    transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .scroll-message-box.revealed {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+      }
+        
     </style>
     
 <head>
@@ -650,6 +713,24 @@
   <div class="wave"></div>
   <div class="wave"></div>
     </div>
+    <div class="bottle-finale">
+  <div class="bottle-trigger" onclick="openBottle()" title="افتحي الزجاجة">🍾</div>
+  <span class="bottle-hint" id="bottleHint">وصلت موجة أخيرة.. اضغطي على الزجاجة</span>
+  
+  <div class="scroll-message-box" id="finalScroll">
+    "وفي الختام، أرجو الله أن يجعل ما تبقى من عمركِ يضج بالسعادة والهناء، وأن يكتب لكِ الرضا في أعمالكِ وفي نفسكِ وأن يرضى عنكِ، وينير دربكِ بالنَّجاح والتَّوفيق📜✨"
+  </div>
+</div>
+
+<script>
+  function openBottle() {
+    const scrollBox = document.getElementById('finalScroll');
+    const hint = document.getElementById('bottleHint');
+    scrollBox.classList.add('revealed');
+    hint.textContent = "رسالة من أعماق البحر ✨";
+  }
+</script>
+    
     
 </body>
 </html>
